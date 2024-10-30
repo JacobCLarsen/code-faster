@@ -2,10 +2,10 @@
     import Codeblock from "$lib/Components/codeblock.svelte";
     import Inputbox from "$lib/Components/Inputbox.svelte";
 	import { compareText } from "$lib/functions/textchecker.svelte";
-	import { hello } from "$lib/functions/textchecker.svelte";
+    import { updateTextColor } from "$lib/functions/textchecker.svelte";
 
     	let message = $state('hello');
-		let pieceofcode = "Hello mister"
+		let pieceofcode = $state("Hello mister")
 		let count = $state(0)
 
 		$effect(() => {
