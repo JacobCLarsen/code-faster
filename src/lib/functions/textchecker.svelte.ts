@@ -66,3 +66,15 @@ export function checkForWin(pieceofcode: string, count: number): boolean {
   return false
 }
 
+export function newTextToWrite(existingText: string) {
+  let newText;
+  let textOptions = ["hello from the function side", "what the toilet dude?", "the quick brown fox just died", "little Billy crosses the road"]
+
+
+  do {
+    let randomNumber = Math.floor(Math.random() * 3);
+    newText = textOptions[randomNumber]
+  } while (newText == existingText)
+
+  return newText
+}
