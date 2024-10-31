@@ -9,8 +9,7 @@
 		let pieceofcode: string = $state("the quick brown fox jumps over the lazy dog")
 		let count = $state(0)
         let completionState = $state(false)
-
-
+        
 		$effect(() => {
 			count = compareText(userInput, pieceofcode)
             completionState = checkForWin(pieceofcode, count)
