@@ -43,11 +43,11 @@
 	$effect(() => {
 		if (completionState) {
 			if (!tutorialActive) {
-				//@ts-ignore
 				pieceofcode = newTextToWrite(pieceofcode);
 			} else if (tutorialState < 5) {
 				tutorialState++;
 				pieceofcode = tutorialSentenceses[tutorialState];
+				console.log(tutorialState);
 			} else {
 				tutorialActive = false;
 			}

@@ -4,7 +4,7 @@ import sentencesData from '$lib/assets/sentances.json';
 export function compareText(input: string, codeblock: string): number {
   let count = 0
   for (let i = 0; i < input.length; i++) {
-    if (input[i] == codeblock[i]) {
+    if (input[i].toLowerCase == codeblock[i].toLowerCase) {
       count++
     } else {
       break
@@ -16,48 +16,58 @@ export function compareText(input: string, codeblock: string): number {
 }
 
 export function updateTextColorRight(textToWrite: string, userInput: string): string {
-  let highLightedText = ""
+  let highLightedText = "";
 
-  for (let i = 0; i < userInput.length; i++) {
-    if (userInput[i] == textToWrite[i]) {
-      if (userInput[i] == " ") {
-        highLightedText += "_"
+  // Normalize both strings to lowercase for case-insensitive comparison
+  const lowerTextToWrite = textToWrite.toLowerCase();
+  const lowerUserInput = userInput.toLowerCase();
+
+  for (let i = 0; i < lowerUserInput.length; i++) {
+    // Compare using the lowercase versions
+    if (lowerUserInput[i] === lowerTextToWrite[i]) {
+      if (lowerUserInput[i] === " ") {
+        highLightedText += "_"; // Use underscore for spaces
       } else {
-        highLightedText += userInput[i]
+        highLightedText += textToWrite[i]; // Preserve original case for the output
       }
     } else {
-      break
+      break; // Stop on the first mismatch
     }
   }
-  return highLightedText
+
+  return highLightedText;
 }
 
 export function updateTextColorWrong(textToWrite: string, userInput: string): string {
-  let highLightedText = ""
+  let highLightedText = "";
+
+  // Normalize both strings to lowercase for case-insensitive comparison
+  const lowerTextToWrite = textToWrite.toLowerCase();
+  const lowerUserInput = userInput.toLowerCase();
 
   for (let i = 0; i < userInput.length; i++) {
-    if (userInput[i] == textToWrite[i] && highLightedText == "") {
-      continue
+    // Compare using the lowercase versions
+    if (lowerUserInput[i] === lowerTextToWrite[i] && highLightedText === "") {
+      continue; // Skip correct characters
     } else {
-      if (textToWrite[i] == " ") {
-        highLightedText += "_"
-      } else if (i < textToWrite.length) {
-        highLightedText += textToWrite[i]
+      if (i < textToWrite.length) {
+        if (textToWrite[i] === " ") {
+          highLightedText += "_"; // Replace spaces with underscores
+        } else {
+          highLightedText += textToWrite[i]; // Add the original character from textToWrite
+        }
       }
     }
   }
-  return highLightedText
+
+  return highLightedText;
 }
 
 export function removeLetters(pieceofcode: string, userInput: string) {
   let newPieceOfCode = pieceofcode
 
   for (let i = 0; i < userInput.length; i++) {
-    if (userInput[i] == pieceofcode[i]) {
-      newPieceOfCode = newPieceOfCode.slice(1)
-    } else {
-      newPieceOfCode = newPieceOfCode.slice(1)
-    }
+    newPieceOfCode = newPieceOfCode.slice(1)
   }
   return newPieceOfCode
 }
@@ -72,8 +82,6 @@ export function checkForWin(pieceofcode: string, count: number): boolean {
 export function newTextToWrite(existingText: string) {
   let newText;
   let sentances = sentencesData.sentences
-
-
   do {
     let randomNumber = Math.floor(Math.random() * sentencesData.sentences.length);
     newText = sentances[randomNumber]
