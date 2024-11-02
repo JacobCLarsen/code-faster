@@ -48,7 +48,7 @@
 			<button
 				onclick={() => {
 					userInput = '';
-                    //@ts-ignore
+					//@ts-ignore
 					pieceofcode = newTextToWrite(pieceofcode);
 				}}
 				class="rounded border border-solid border-slate-800 px-2 py-1">Next piece of code!</button
