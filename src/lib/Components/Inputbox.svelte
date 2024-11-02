@@ -18,6 +18,6 @@
 
 <style>
 	input {
-		color: deeppink;
+		color: #0F4C75;
 	}
 </style>

@@ -1,3 +1,6 @@
+// Import the sentances to write, from the sentances.json file
+import sentencesData from '$lib/assets/sentances.json';
+
 export function compareText(input: string, codeblock: string): number {
   let count = 0
   for (let i = 0; i < input.length; i++) {
@@ -68,13 +71,26 @@ export function checkForWin(pieceofcode: string, count: number): boolean {
 
 export function newTextToWrite(existingText: string) {
   let newText;
-  let textOptions = ["hello from the function side", "what the toilet dude?", "the quick brown fox just died", "little Billy crosses the road"]
+  let sentances = sentencesData.sentences
 
 
   do {
-    let randomNumber = Math.floor(Math.random() * 3);
-    newText = textOptions[randomNumber]
+    let randomNumber = Math.floor(Math.random() * sentencesData.sentences.length);
+    newText = sentances[randomNumber]
   } while (newText == existingText)
 
   return newText
+}
+
+export function calcLevelRequirement(level: number): number {
+  let levelRequirement: number
+
+  if (level == 0) {
+    levelRequirement = 40
+  } else {
+    levelRequirement = level * 40 + 10
+  }
+
+  return levelRequirement
+
 }

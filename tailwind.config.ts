@@ -8,7 +8,7 @@ export default {
 			fontFamily: {
 				codefont: ['Source Code Pro', 'monospce']
 			}
-		}
+		},
 	},
 
 	plugins: []
