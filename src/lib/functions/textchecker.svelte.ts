@@ -93,11 +93,7 @@ export function newTextToWrite(existingText: string) {
 export function calcLevelRequirement(level: number): number {
   let levelRequirement: number
 
-  if (level == 0) {
-    levelRequirement = 40
-  } else {
-    levelRequirement = level * 40 + 10
-  }
+  levelRequirement = level * 20 + 10
 
   return levelRequirement
 

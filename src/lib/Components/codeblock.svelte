@@ -23,7 +23,7 @@
 	let wrongLetters = $state('');
 	let levelProgress = $state(0);
 	let points: number = $state(0);
-	let level: number = $state(0);
+	let level: number = $state(1);
 	let LevelRequirement: number = $state(0);
 	let tutorialActive = true;
 	let tutorialSentenceses = tutorialData.tutorial;
@@ -43,13 +43,16 @@
 	$effect(() => {
 		if (completionState) {
 			if (!tutorialActive) {
+				// @ts-ignore
 				pieceofcode = newTextToWrite(pieceofcode);
-			} else if (tutorialState < 5) {
+			} else if (tutorialState < tutorialSentenceses.length - 1) {
 				tutorialState++;
 				pieceofcode = tutorialSentenceses[tutorialState];
 				console.log(tutorialState);
 			} else {
 				tutorialActive = false;
+				// @ts-ignore
+				pieceofcode = newTextToWrite(pieceofcode);
 			}
 
 			userInput = '';
@@ -67,7 +70,7 @@
 </script>
 
 <div class="flex flex-col items-center">
-	<div class="mb-10 flex flex-col items-center font-sans">
+	<div class="mb-12 flex flex-col items-center font-sans">
 		<div class="mb-4 w-40">
 			<p class="mb-2">Level: {level}</p>
 			<div class="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
